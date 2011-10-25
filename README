@@ -1,0 +1,22 @@
+Makefile for Arduino command line building.
+
+This makefile will grab all C, C++, and S files in the current directory, compile them and link them together with the Arduino libraries.
+It does not compile the silly .pde files the Arduino uses by default.
+
+See the testbench directory for a sample of how to use the makefile.
+Commands to test:
+make - build everything.
+make clean - Un-build everything.
+make upload - Write to Arduino flash memory.
+make monitor - Bring up a serial monitor.
+make upload_monitor - upload and monitor.
+
+Inspect the generated assembly code by viewing build/testbench.asm
+
+Known problems:
+The makefile will use wildcards, which basically means that even if you remove a source file, the corresponding object file will be left in the build directory and included when linking. The solution is to do "make clean" whenever a source file is removed.
+
+Unknown problems:
+I have no idea of how this makefile can be used to generate libraries for use in other projects.
+
+
