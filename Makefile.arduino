@@ -283,8 +283,14 @@ upload : all
 	- $(AVRDUDE) -V -C$(AVRDUDE_CONF) -p$(MCU) -c$(PROGRAMMER) \
 	  -P$(PORT) -b$(UPLOAD_SPEED) -D -Uflash:w:$(IMAGE).hex:i
 
-monitor :
-	$(MON_CMD) $(PORT) $(MON_SPEED)
+monitor : monitor_$(MON_CMD)
+
+monitor_screen :
+	screen $(PORT) $(MON_SPEED)
+
+monitor_picocom :
+	picocom --baud $(MON_SPEED) $(PORT)
+
 # END:makemods
 
 upload_monitor : upload monitor
